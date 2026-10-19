@@ -10,8 +10,8 @@ export const profile = {
   phone: '+91 93259 96803',
   linkedin: 'https://linkedin.com/in/shantanuchoudhary1103',
   github: 'https://github.com/ShantanuPr',
-  resume: '/Shantanu_Choudhary_Frontend_Developer_Resume.pdf',
-  photo: '/profile.webp',
+  resume: `${import.meta.env.BASE_URL}Shantanu_Choudhary_Frontend_Developer_Resume.pdf`,
+  photo: `${import.meta.env.BASE_URL}profile.webp`,
   roles: ['Frontend Developer', 'Full Stack Developer', 'React.js Engineer'],
   summary:
     'Frontend Developer with 3.5 years of experience building and scaling React.js, Next.js and TypeScript applications used by 100K+ users. I lead a development team on client projects and own delivery from requirements to release. I focus on reusable component architecture, Redux Toolkit state management, real-time features with WebSockets and web performance, and I also ship cross-platform apps in Flutter.',
