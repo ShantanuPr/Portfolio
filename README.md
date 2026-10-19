@@ -2,6 +2,8 @@
 
 Personal portfolio site built with React, TypeScript, Vite and Tailwind CSS.
 
+**Live:** https://shantanupr.github.io/Portfolio/
+
 ## Develop
 
 ```bash
@@ -20,5 +22,8 @@ All text (summary, experience, projects, GitHub repos, skills, contact) lives in
 
 ## Deploy
 
-Import the repo on [Vercel](https://vercel.com/new) or Netlify. Both detect Vite automatically
-(build command `npm run build`, output directory `dist`).
+Every push to `main` builds and publishes the site to GitHub Pages via
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). In the repo's
+**Settings → Pages**, the source must be set to **GitHub Actions**.
+
+The site also deploys as-is to Vercel or Netlify (build command `npm run build`, output directory `dist`).
