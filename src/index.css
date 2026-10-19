@@ -1,0 +1,137 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+}
+
+:root {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --elevated: #f1f4f9;
+  --line: #e3e8f0;
+  --ink: #0b1220;
+  --muted: #526075;
+  --accent: #0d9488;
+  --accent-2: #4f46e5;
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 18%, transparent);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #060a12;
+  --surface: #0c121d;
+  --elevated: #111a28;
+  --line: #1b2535;
+  --ink: #e8eef6;
+  --muted: #8a9ab1;
+  --accent: #2dd4bf;
+  --accent-2: #818cf8;
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 22%, transparent);
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  @apply bg-bg font-sans text-ink antialiased;
+  transition: background-color 0.3s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+}
+
+/* Fixed deep tones so white text stays readable in both themes */
+.bg-gradient-cta {
+  background: linear-gradient(120deg, #0f766e 0%, #1e40af 55%, #4338ca 100%);
+}
+
+/* Faint dot grid that fades out toward the edges */
+.bg-dots {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+/* Cursor-following glow, positioned by the Spotlight component */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), var(--glow), transparent 45%);
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin 10s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-spin-slow,
+  .marquee-track {
+    animation: none;
+  }
+}
